@@ -33,6 +33,14 @@ public class GlobalExceptionHandler {
         return problem;
     }
 
+    @ExceptionHandler(StockInsuficienteException.class)
+    public ProblemDetail handleStockInsuficiente(StockInsuficienteException ex){
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getMessage());
+        problem.setTitle("Stock insuficiente");
+        problem.setType(URI.create("https://api.gestion.com/errores/stock-insuficiente"));
+        return problem;
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handleValidacion(MethodArgumentNotValidException ex) {
         Map<String, String> errores = ex.getBindingResult()

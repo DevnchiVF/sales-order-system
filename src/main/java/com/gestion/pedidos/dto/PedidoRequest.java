@@ -1,5 +1,6 @@
 package com.gestion.pedidos.dto;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -12,5 +13,5 @@ public record PedidoRequest(
 
         @NotNull(message = "Debe incluir al menos un item")
         @Size(min = 1, message = "Debe incluir al menos un item")
-        List<ItemRequest> items
+        List<@Valid ItemRequest> items
 ) {}
